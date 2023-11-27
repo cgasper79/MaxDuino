@@ -355,42 +355,6 @@ void TZXProcess() {
               EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID);
             #endif
         
-            #if defined(OLED1306) && defined(OLEDPRINTBLOCK) 
-              #ifdef XY
-                setXY(7,2);
-                sendChar('1');sendChar('0');
-                setXY(14,2);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);  
-                setXY(15,2);
-                sendChar(48+block%10);   
-              #endif
-              #if defined(XY2) && not defined(OLED1306_128_64)
-                setXY(9,1);
-                sendChar('1');sendChar('0');                    
-                setXY(12,1);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);
-                setXY(13,1);sendChar(48+block%10);
-              #endif
-              #if defined(XY2) && defined(OLED1306_128_64)
-                #ifdef XY2force
-                  sendStrXY("10",7,4);
-                  if ((block%10) == 0) {
-                    utoa((block/10)%10,(char *)input,10);
-                    sendStrXY((char *)input,14,4);
-                  }
-                  input[0]=48+block%10;
-                  input[1]=0;
-                  sendStrXY((char *)input,15,4);
-                #else                      
-                  setXY(7,4);
-                  sendChar('1');sendChar('0');
-                  setXY(14,4);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);
-                  setXY(15,4);
-                  sendChar(48+block%10);
-                #endif
-              #endif                    
-            #endif
             #if defined(BLOCKID_INTO_MEM)
               if (block < maxblock) block++;
               else block = 0;
@@ -446,32 +410,7 @@ void TZXProcess() {
               EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID);
             #endif
             
-            #if defined(OLED1306) && defined(OLEDPRINTBLOCK)
-              #ifdef XY
-                setXY(7,2);
-                sendChar('1');sendChar('1');
-                setXY(14,2);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);  
-                setXY(15,2);
-                sendChar(48+block%10);   
-              #endif
-              #if defined(XY2) && not defined(OLED1306_128_64)
-                setXY(9,1);sendChar('1');sendChar('1');                      
-                setXY(12,1);if ((block%10) == 0) sendChar(48+(block/10)%10);
-                setXY(13,1);sendChar(48+block%10);
-              #endif
-              #if defined(XY2) && defined(OLED1306_128_64)
-                #ifdef XY2force
-                  sendStrXY("11",7,4);
-                  if ((block%10) == 0) {utoa((block/10)%10,(char *)input,10);sendStrXY((char *)input,14,4);}
-                  input[0]=48+block%10;input[1]=0;sendStrXY((char *)input,15,4);                
-                #else
-                  setXY(7,4);sendChar('1');sendChar('1');                    
-                  setXY(14,4);if ((block%10) == 0) sendChar(48+(block/10)%10);
-                  setXY(15,4);sendChar(48+block%10);
-                #endif
-              #endif                    
-            #endif   
+             
             #if defined(BLOCKID_INTO_MEM)
               if (block < maxblock) block++;
               else block = 0;
@@ -664,42 +603,6 @@ void TZXProcess() {
                 EEPROM_put(BLOCK_EEPROM_START+5*block, bytesRead);
                 EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID);
               #endif
-
-              #if defined(OLED1306) && defined(OLEDPRINTBLOCK)
-                #ifdef XY
-                  setXY(7,2);
-                  sendChar('1');sendChar('9');
-                  setXY(14,2);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);  
-                  setXY(15,2);
-                  sendChar(48+block%10);   
-                #endif
-                #if defined(XY2) && not defined(OLED1306_128_64)
-                  setXY(9,1);
-                  sendChar('1');sendChar('9');                     
-                  setXY(12,1);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);
-                  setXY(13,1);
-                  sendChar(48+block%10);
-                #endif
-                #if defined(XY2) && defined(OLED1306_128_64)
-                  #ifdef XY2force
-                    sendStrXY("19",7,4);
-                    if ((block%10) == 0) {
-                      utoa((block/10)%10,(char *)input,10);
-                      sendStrXY((char *)input,14,4);
-                    }
-                    input[0]=48+block%10;input[1]=0;sendStrXY((char *)input,15,4);                     
-                  #else 
-                    setXY(7,4);
-                    sendChar('1');sendChar('9');                    
-                    setXY(14,4);
-                    if ((block%10) == 0) sendChar(48+(block/10)%10);
-                    setXY(15,4);
-                    sendChar(48+block%10);
-                  #endif
-                #endif
-              #endif
       
               #if defined(BLOCKID_INTO_MEM)
                 if (block < maxblock) block++;
@@ -767,44 +670,7 @@ void TZXProcess() {
           #if defined(BLOCK_EEPROM_PUT)
             EEPROM_put(BLOCK_EEPROM_START+5*block, bytesRead);
             EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID); 
-          #endif
-          #if defined(OLED1306) && defined(OLEDPRINTBLOCK)
-            #ifdef XY
-              setXY(7,2);
-              sendChar('2');sendChar('1');
-              setXY(14,2);
-              if ((block%10) == 0) sendChar(48+(block/10)%10);  
-              setXY(15,2);
-              sendChar(48+block%10);   
-            #endif
-            #if defined(XY2) && not defined(OLED1306_128_64)
-              setXY(9,1);
-              sendChar('2');sendChar('1');                      
-              setXY(12,1);
-              if ((block%10) == 0) sendChar(48+(block/10)%10);
-              setXY(13,1);
-              sendChar(48+block%10);
-            #endif
-            #if defined(XY2) && defined(OLED1306_128_64)
-              #ifdef XY2force
-                sendStrXY("21",7,4);
-                if ((block%10) == 0) {
-                  utoa((block/10)%10,(char *)input,10);
-                  sendStrXY((char *)input,14,4);
-                }
-                input[0]=48+block%10;
-                input[1]=0;
-                sendStrXY((char *)input,15,4);                     
-              #else
-                setXY(7,4);
-                sendChar('2');sendChar('1');                    
-                setXY(14,4);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);
-                setXY(15,4);
-                sendChar(48+block%10);
-              #endif
-            #endif                    
-          #endif     
+          #endif 
           #if defined(BLOCKID_INTO_MEM)
             if (block < maxblock) block++;
             else block = 0;
@@ -930,43 +796,7 @@ void TZXProcess() {
               EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID);
             #endif
             
-            #if defined(OLED1306) && defined(OLEDPRINTBLOCK)
-              #ifdef XY
-                setXY(7,2);
-                sendChar('4');sendChar('B');
-                setXY(14,2);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);  
-                setXY(15,2);
-                sendChar(48+block%10);   
-              #endif
-              #if defined(XY2) && not defined(OLED1306_128_64)
-                setXY(9,1);
-                sendChar('4');sendChar('B');                     
-                setXY(12,1);
-                if ((block%10) == 0) sendChar(48+(block/10)%10);
-                setXY(13,1);
-                sendChar(48+block%10);
-              #endif
-              #if defined(XY2) && defined(OLED1306_128_64)
-                #ifdef XY2force
-                  sendStrXY("4B",7,4);
-                  if ((block%10) == 0) {
-                    utoa((block/10)%10,(char *)input,10);
-                    sendStrXY((char *)input,14,4);
-                  }
-                  input[0]=48+block%10;
-                  input[1]=0;
-                  sendStrXY((char *)input,15,4);                     
-                #else
-                  setXY(7,4);
-                  sendChar('4');sendChar('B');                    
-                  setXY(14,4);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);
-                  setXY(15,4);
-                  sendChar(48+block%10);
-                #endif
-              #endif                    
-            #endif     
+               
             #if defined(BLOCKID_INTO_MEM)
               if (block < maxblock) block++;
               else block = 0;
@@ -1088,44 +918,7 @@ void TZXProcess() {
                 EEPROM_put(BLOCK_EEPROM_START+5*block, bytesRead);
                 EEPROM_put(BLOCK_EEPROM_START+4+5*block, currentID); 
               #endif
-              
-              #if defined(OLED1306) && defined(OLEDPRINTBLOCK)
-                #ifdef XY
-                  setXY(7,2);
-                  sendChar('F');sendChar('E');
-                  setXY(14,2);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);  
-                  setXY(15,2);
-                  sendChar(48+block%10);   
-                #endif
-                #if defined(XY2) && not defined(OLED1306_128_64)
-                  setXY(9,1);
-                  sendChar('F');sendChar('E');                      
-                  setXY(12,1);
-                  if ((block%10) == 0) sendChar(48+(block/10)%10);
-                  setXY(13,1);
-                  sendChar(48+block%10);
-                #endif
-                #if defined(XY2) && defined(OLED1306_128_64)
-                  #ifdef XY2force
-                    sendStrXY("FE",7,4);
-                    if ((block%10) == 0) {
-                      utoa((block/10)%10,(char *)input,10);
-                      sendStrXY((char *)input,14,4);
-                    }
-                    input[0]=48+block%10;
-                    input[1]=0;
-                    sendStrXY((char *)input,15,4);                     
-                  #else
-                    setXY(7,4);
-                    sendChar('F');sendChar('E');                    
-                    setXY(14,4);
-                    if ((block%10) == 0) sendChar(48+(block/10)%10);
-                    setXY(15,4);
-                    sendChar(48+block%10);
-                  #endif
-                #endif                    
-              #endif     
+                  
               #if defined(BLOCKID_INTO_MEM)
                 if (block < maxblock) block++;
                 else block = 0;
@@ -1421,39 +1214,20 @@ void TZXProcess() {
       default:
         //ID Not Recognised - Fall back if non TZX file or unrecognised ID occurs
         
-        #ifdef LCDSCREEN16x2
+        #ifdef LCDSCREEN20x4
           lcd.clear();
-          lcd.setCursor(0,0);
+          lcd.setCursor(0,2);
           lcd.print("ID? ");
-          lcd.setCursor(4,0);
+          lcd.setCursor(4,2);
           //lcd.print(String(currentID, HEX));
           utoa(currentID,PlayBytes,16);
           lcd.print(PlayBytes);
-          lcd.setCursor(0,1);
+          lcd.setCursor(0,3);
           //lcd.print(String(bytesRead,HEX) + " - L: " + String(loopCount, DEC));
           utoa(bytesRead,PlayBytes,16);
           lcd.print(PlayBytes) ;  lcd.print(" - L: "); lcd.print(loopCount);
         #endif
 
-        #ifdef OLED1306
-          utoa(bytesRead,PlayBytes,16);
-          printtext(PlayBytes,lineaxy);
-
-        #endif 
-        
-        #ifdef P8544             
-          lcd.clear();
-          lcd.setCursor(0,0);
-          lcd.print("ID? ");
-          lcd.setCursor(4,0);
-          //lcd.print(String(currentID, HEX));
-          utoa(currentID,PlayBytes,16);
-          lcd.print(PlayBytes);
-          lcd.setCursor(0,1);
-          //lcd.print(String(bytesRead,HEX) + " - L: " + String(loopCount, DEC));
-          utoa(bytesRead,PlayBytes,16);
-          lcd.print(PlayBytes) ;  lcd.print(" - L: "); lcd.print(loopCount);
-        #endif
 
         noInterrupts();  
         while(!button_stop()) {

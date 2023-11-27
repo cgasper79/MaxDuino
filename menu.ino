@@ -119,9 +119,7 @@ void menuMode()
             if(button_play() && !lastbtn) {
               BAUDRATE = baudrate;
               updateScreen=true;
-              #if defined(OLED1306) && defined(OSTATUSLINE) 
-                OledStatusLine();
-              #endif
+            
               lastbtn=true;
             }
 
@@ -180,10 +178,7 @@ void doOnOffSubmenu(bool& refVar)
     if(button_play() && !lastbtn) {
       refVar = !refVar;
       lastbtn=true;
-      updateScreen=true;
-      #if defined(OLED1306) && defined(OSTATUSLINE) 
-        OledStatusLine();
-      #endif              
+      updateScreen=true;             
     }
     checkLastButton();
   }

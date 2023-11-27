@@ -1,4 +1,4 @@
-#ifdef LCDSCREEN16x2
+#ifdef LCDSCREEN20x4
 // Based on the work by DFRobot
 
 #include "LiquidCrystal_I2C_Soft.h"
